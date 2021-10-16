@@ -1,0 +1,130 @@
+<div id="site-heading">
+  <div class="heading">
+    <img src="public/img/logo.jpg" alt="logo" />
+    <h1>
+      <span>The Sardine</span>
+      <span>Tie one on, will ya</span>
+      <span><a href="https://goo.gl/maps/eyLwNgxwWeWY3ZJG9" />1101 S Pacific Ave, San Pedro, CA 90731</a></span>
+    </h1>
+  </div>
+  <div class="navbar">
+    <ul>
+      <li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>
+      <li class="nav-item"><a class="nav-link" src="#menu">Menu</a></li>
+      <li class="nav-item"><a class="nav-link" src="#calendar">Calendar</a></li>
+      <li class="nav-item"><a class="nav-link" href="https://recessops.com/collections/sardine">Merch</a></li>
+    </ul>
+  </div>
+</div>
+
+<nav id="navbar" class="navbar stuck">
+  <div id="navbar-heading">
+    <img src="public/img/logo.jpg" alt="logo" />
+    <h1>
+      <span>The Sardine</span>
+      <span>Tie one on, will ya</span>
+    </h1>
+  </div>
+  <ul>
+    <li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>
+    <li class="nav-item"><a class="nav-link" src="#menu">Menu</a></li>
+    <li class="nav-item"><a class="nav-link" src="#calendar">Calendar</a></li>
+    <li class="nav-item"><a class="nav-link" src="https://recessops.com/collections/sardine">Merch</a></li>
+  </ul>
+</nav>
+
+<section id="featured">
+  <p class="sectionHeader">Featured Events</p>
+  {{#unless featuredEvents}}
+    No featured events, check back soon
+  {{/unless}}
+
+  {{#each events}}
+    {{#if this.featured}}
+      <div class="event">
+        <div class="eventCover">
+          <img class="eventImg" src="/events/{{this._id}}/image" />
+          <time class="eventDateTime">
+            <span>{{this.date}}</span>
+            <span>{{this.time}}</span>
+          </time>
+          <p class="eventTitle">{{this.name}}</p>
+          {{#if this.tickets}}
+            <div class="eventTickets"><a href="{{this.tickets}}">Tickets</a></div>
+          {{/if}}
+          {{#unless this.tickets}}
+            <div class="eventTickets disabled"><a href="#">Tickets</a></div>
+          {{/unless}}
+          <div class="eventMore">More</div>
+          <p class="eventDesc">
+            {{#if this.featured}}
+              {{this.title}}</br>
+            {{/if}}
+            {{#if this.price}}
+              {{this.price}}</br>
+            {{/if}}
+            {{{this.desc}}}
+          </p>
+        </div>
+      </div>
+    {{/if}}
+  {{/each}}
+</section>
+
+
+<section id="calendar">
+  <p class="sectionHeader">Event Calendar</p>
+  <div id="calendarGrid">
+    {{#unless events}}
+      No events, check back soon
+    {{/unless}}
+    {{#each events}}
+      <div class="event">
+        <div class="eventCover">
+          <img class="eventImg" src="/events/{{this._id}}/image" />
+          <time class="eventDateTime">
+            <span>{{this.date}}</span>
+            <span>{{this.time}}</span>
+          </time>
+          <p class="eventTitle">{{this.name}}</p>
+          {{#if this.tickets}}
+            <div class="eventTickets"><a href="{{this.tickets}}" target="_blank">Tickets</a></div>
+          {{/if}}
+          {{#unless this.tickets}}
+            <div class="eventTickets disabled"><a href="#">Tickets</a></div>
+          {{/unless}}
+          <div class="eventMore">More</div>
+          <p class="eventDesc">
+            {{#if this.featured}}
+              {{this.title}}</br>
+            {{/if}}
+            {{#if this.price}}
+              {{this.price}}</br>
+            {{/if}}
+            {{{this.desc}}}
+          </p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</section>
+
+<section id="menu">
+  <p class="sectionHeader">Menu</p>
+  <ul id="menuGrid">
+    {{#each menuSections}}
+      <ul class="menuSection" id="{{@key}}Section">
+        <p class="menuSectionHeader">{{@key}}</p>
+        {{#each this}}
+          <li class="menuItem">
+            <span class="menuItemName">{{this.name}} {{#if this.hasMetadata}}({{#if this.subtype}}{{this.subtype}} {{/if}}{{#if this.alcohol}}{{this.alcohol}} {{/if}}{{#if this.volume}}{{this.volume}}{{/if}}){{/if}}</span>
+            <span class="menuItemPrice">{{this.price}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    {{/each}}
+  </ul>
+</section>
+
+
+<div id="scrollToTop" class="hidden">^</div>

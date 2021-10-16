@@ -1,0 +1,31 @@
+{
+	"drinks": [{
+			"name": "drink one",
+			"price": 1.01
+		},
+		{
+			"name": "drink one",
+			"price": 1.01
+		},
+		{
+			"name": "drink one",
+			"price": 1.01
+		}
+	],
+	"food": [{
+			"name": "drink one",
+			"price": 1.01,
+			"warnings": []
+		},
+		{
+			"name": "drink one",
+			"price": 1.01,
+			"warnings": ["d", "d"]
+		},
+		{
+			"name": "drink one",
+			"price": 1.01,
+			"warnings": ["d"]
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "sardine",
+  "version": "1.0.0",
+  "description": "A backend scraping server for the Sardine",
+  "main": "app.js",
+  "scripts": {
+    "sass": "sass public/css/index.scss public/css/index.css && sass public/css/admin.scss public/css/admin.css && node app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jack-thomascolwell/sardine.git"
+  },
+  "author": "Jack Thomas-Colwell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jack-thomascolwell/sardine/issues"
+  },
+  "homepage": "https://github.com/jack-thomascolwell/sardine#readme",
+  "dependencies": {
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.4",
+    "@hapi/vision": "^6.1.0",
+    "bcrypt": "^5.0.1",
+    "handlebars": "^4.7.7",
+    "hapi-mongodb": "^10.0.1",
+    "joi": "^17.4.2"
+  }
+}

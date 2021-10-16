@@ -1,0 +1,18 @@
+<form method="post" id="logIn">
+  <div class="heading">Log In</div>
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
+
+  <div class="form__group half">
+    <input type="text" class="form__field" placeholder="Username" name="username" id="username" value="{{username}}" required />
+    <label for="username" class="form__label">Username</label>
+  </div>
+
+  <div class="form__group half">
+    <input type="password" class="form__field" placeholder="Password" name="password" id="password" required />
+    <label for="password" class="form__label">Password</label>
+  </div>
+
+  <input type="submit" value="Sumbit">
+</form>

@@ -1,0 +1,38 @@
+<form method="post" id="menuNew">
+  <div class="heading">New Menu Item</div>
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="Type" name="type" id="type" value="{{menuItem.type}}" required />
+    <label for="type" class="form__label">Type</label>
+  </div>
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="Name" name="name" id="name" value="{{menuItem.name}}" required />
+    <label for="name" class="form__label">Name</label>
+  </div>
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="Price" name="price" id="price" value="{{menuItem.price}}" required />
+    <label for="price" class="form__label">Price</label>
+  </div>
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="Subtype" name="subtype" id="subtype" value="{{menuItem.subtype}}" required />
+    <label for="subtype" class="form__label">Subtype</label>
+  </div>
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="% Alcohol" name="pctAlcohol" id="pctAlcohol" value="{{menuItem.pctAlcohol}}" required />
+    <label for="pctAlcohol" class="form__label">% Alcohol</label>
+  </div>
+
+  <div class="form__group third">
+    <input type="text" class="form__field" placeholder="Volume" name="volume" id="volume" value="{{menuItem.volume}}" required />
+    <label for="volume" class="form__label">Volume</label>
+  </div>
+
+  <input type="submit" value="Submit">
+</form>

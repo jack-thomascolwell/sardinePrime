@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,100;1,400&family=Nanum+Gothic&display=swap');
+$main: #FFFFFF;
+$accent: darken(#FFFFFF, 20%);
+$background: #000000;
+@mixin textBody {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  letter-spacing: 0;
+  font-style: normal;
+}
+@mixin textTitle {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2px;
+}
+@mixin flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin textSmallest {
+  font-size: 0.75rem;
+}
+@mixin textSmaller {
+  font-size: 1.125rem;
+}
+@mixin textSmall {
+  font-size: 1.25rem;
+}
+@mixin textNormal {
+  font-size: 1.5rem;
+}
+@mixin textBig {
+  font-size: 2.000rem;
+}
+@mixin textBigger {
+  font-size: 2.666rem;
+}
+@mixin textBiggest {
+  font-size: 3.554rem;
+}
+@mixin hideScrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html {
+  font-size: 87.5%;
+}
+
+em {
+  font-style: italic !important;
+}
+
+strong {
+  font-weight: bold !important;
+
+  &.alt {
+    color: $accent;
+  }
+}
+
+small {
+  @include textSmaller;
+}
+
+a {
+  color: $accent;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: darken($accent, 20%);
+  }
+}
+
+body {
+  background-color: $background;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-y: hidden;
+}
+
+#header {
+  grid-row: 1;
+  grid-column: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-bottom: 1px solid $main;
+
+  .title {
+    @include textBigger;
+    @include textTitle;
+    color: $main;
+    margin-right: 20px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    width: 30%;
+
+    li {
+      @include textNormal;
+      @include textTitle;
+      text-transform: capitalize;
+    }
+  }
+
+  .email {
+    @include textBody;
+    @include textNormal;
+    margin-left: auto;
+  }
+
+  .logout {
+    @include textBody;
+    @include textNormal;
+    margin-left: 1ex;
+
+    &::before {
+      content: "-";
+      margin-left: 1ex;
+      @include textBody;
+      @include textNormal;
+    }
+  }
+}
+
+.page {
+  grid-row: 2;
+  grid-column: 1;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  .title {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    @include textBiggest;
+    @include textTitle;
+    color: $main;
+
+    .new {
+      @include textBiggest;
+      @include textTitle;
+      margin-left: auto;
+      text-transform: uppercase;
+    }
+  }
+
+  .none {
+    @include textNormal;
+    @include textBody;
+    color: $main;
+    text-align: left;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    text-align: left;
+    margin-bottom: 2em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .cell {
+      @include textBody;
+      @include textSmall;
+    }
+
+    &.header {
+      font-weight: 400;
+      .cell {
+        font-weight: 400;
+        color: $main;
+        text-align: left;
+      }
+    }
+
+    .event {
+      width: 15%;
+    }
+
+    .datetime {
+      width: 15%;
+    }
+
+    .price {
+      width: 15%;
+    }
+
+    .description {
+      width: 30%;
+    }
+
+    .tickets {
+      width: 15%;
+    }
+
+    .name {
+      width: 15%;
+    }
+
+    .type {
+      width: 15%;
+    }
+
+    .subtype {
+      width: 15%;
+    }
+
+    .alcohol {
+      width: 15%;
+    }
+
+    .volume {
+      width: 15%;
+    }
+  }
+}
+
+form {
+  width: 100%;
+  z-index: 2;
+  color: $main;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-end;
+  box-sizing: border-box;
+
+  .heading {
+    width: 100%;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid $main;
+    font-variant: small-caps;
+    @include textTitle;
+    @include textBiggest;
+    text-align: center;
+  }
+
+  .delete {
+    color: $main;
+    @include textBody;
+    @include textBig;
+
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @include flexCentered;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  .error {
+    width: 100%;
+    color: $accent;
+    @include textBody;
+    @include textBig;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .form__group {
+    margin-top: 20px;
+    position: relative;
+    @include textNormal;
+    line-height: 1;
+    height: 2em;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &.third {
+      width: calc((100% - 30px) / 3);
+    }
+
+    &.fourth {
+      width: calc((100% - 40px) / 4);
+    }
+
+    &.half {
+      width: calc((100% - 20px) / 2);
+    }
+
+    &.full {
+      width: calc(100% - 10px);
+    }
+
+    .form__field {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid $accent;
+      outline: none;
+      @include textNormal;
+      @include textBody;
+      color: $accent;
+      background: transparent;
+      transition: border-color 0.2s;
+      position: absolute;
+      bottom: 0;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      &:placeholder-shown ~ .form__label {
+        @include textNormal;
+        bottom: 0;
+        transform: none;
+        cursor: text;
+      }
+
+      &:invalid,
+      &:required {
+        box-shadow: none;
+      }
+
+      &:focus {
+        ~ .form__label {
+          @include textSmallest;
+          color: $main;
+          bottom: 100%;
+          transform: translateY(100%);
+        }
+        border-color: $main;
+      }
+    }
+
+    .form__label {
+      position: absolute;
+      transition: 0.2s;
+      bottom: 100%;
+      transform: translateY(100%);
+      @include textSmallest;
+      @include textTitle;
+      color: $accent;
+    }
+  }
+
+  .form__group__area {
+    margin-top: 20px;
+    position: relative;
+    @include textNormal;
+    line-height: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &.third {
+      height: 4em;
+      width: calc((100% - 30px) / 3);
+    }
+
+    &.fourth {
+      height: 6em;
+      width: calc((100% - 40px) / 4);
+    }
+
+    &.half {
+      height: 8em;
+      width: calc((100% - 20px) / 2);
+    }
+
+    &.full {
+      height: 10em;
+      width: calc(100% - 10px);
+    }
+
+    .form__field {
+      resize: none;
+      width: 100%;
+      border: 0;
+      height: calc(100% - 1em);
+      border-bottom: 1px solid $accent;
+      outline: none;
+      @include textNormal;
+      @include textBody;
+      color: $main;
+      background: transparent;
+      transition: border-color 0.2s;
+      position: absolute;
+      bottom: 0;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      &:placeholder-shown ~ .form__label {
+        @include textNormal;
+        bottom: 0;
+        transform: none;
+        cursor: text;
+      }
+
+      &:invalid,
+      &:required {
+        box-shadow: none;
+      }
+
+      &:focus {
+        ~ .form__label {
+          @include textSmallest;
+          color: $main;
+          bottom: 100%;
+          transform: translateY(100%);
+        }
+        border-color: $main;
+      }
+    }
+
+    .form__label {
+      position: absolute;
+      transition: 0.2s;
+      bottom: 100%;
+      transform: translateY(100%);
+      @include textSmallest;
+      @include textTitle;
+      color: $accent;
+    }
+  }
+
+  .subheading {
+    @include textTitle;
+    @include textBig;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $accent;
+  }
+
+  input[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    background: transparent;
+    color: $main;
+    text-shadow: 1px 1px $accent;
+    @include textBig;
+    @include textTitle;
+    border: none;
+    outline: none;
+
+    &:active,
+    &:hover {
+      color: $accent;
+    }
+  }
+}

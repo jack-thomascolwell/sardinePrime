@@ -1,0 +1,20 @@
+<div class="title">Manage Events<span class="new"><a href="/admin/events/new">New</a></span></div>
+<div class="row header">
+  <div class="cell event">Event</div>
+  <div class="cell datetime">Date-time</div>
+  <div class="cell price">Price</div>
+  <div class="cell description">Description</div>
+  <div class="cell tickets">Tickets</div>
+</div>
+{{#each events}}
+  <a class="row" href="/admin/events/{{this._id}}">
+    <p class="cell event">{{this.name}}</p>
+    <p class="cell datetime">{{this.datetime}}</p>
+    <p class="cell price">{{this.price}}</p>
+    <p class="cell description">{{this.description}}</p>
+    <p class="cell tickets">{{this.tickets}}</p>
+  </a>
+{{/each}}
+{{#unless events}}
+  <p>No events</p>
+{{/unless}}

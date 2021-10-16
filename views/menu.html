@@ -1,0 +1,22 @@
+<div class="title">Manage Menu<span class="new"><a href="/admin/menu/new">New</a></span></div>
+<div class="row header">
+  <div class="cell type">Type</div>
+  <div class="cell name">Name</div>
+  <div class="cell price">Price</div>
+  <div class="cell subtype">Subtype</div>
+  <div class="cell alcohol">% Alcohol</div>
+  <div class="cell volume">Volume</div>
+</div>
+{{#each menu}}
+  <a class="row" href="/admin/menu/{{this._id}}">
+    <div class="cell type">{{this.type}}</div>
+    <div class="cell name">{{this.name}}</div>
+    <div class="cell price">{{this.price}}</div>
+    <div class="cell subtype">{{this.subtype}}</div>
+    <div class="cell alcohol">{{this.pctAlcohol}}</div>
+    <div class="cell volume">{{this.volume}}</div>
+  </a>
+{{/each}}
+{{#unless menu}}
+  <div class="none">No menu items</div>
+{{/unless}}

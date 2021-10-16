@@ -1,0 +1,47 @@
+﻿ID,Type,Name,Price,Subtype,PctAlcohol,Volume
+1,Beer,805,6,Blonde Ale,4.70%,12 oz
+2,Beer,Allagash White,7,White,5.20%,Pint
+3,Beer,Amalgamator,7,IPA,7.10%,Pint
+4,Beer,Bitburger,6,Pilsner,4.80%,16.9 oz
+5,Beer,Blue Star,5,Wheat,4.50%,12 oz
+6,Beer,Brass Jar,7,Hoppy Amber,8.00%,Pint
+7,Beer,Champagne Velvet,7,Pilsner,5.50%,16 oz
+8,Beer,Clausthaler,5,Non-Alcoholic,0.50%,12 oz
+9,Beer,Daytime,5,Session IPA,4.00%,12 oz
+10,Beer,Delicious,6,IPA,7.70%,12 oz
+11,Beer,Easy Jack,6,Session IPA,4.50%,12 oz
+12,Beer,Fear Movie Lions,8,DIPA,8.50%,16 oz
+13,Beer,Firestone Lager,6,Lager,4.60%,12 oz
+14,Beer,Flying Cat,8,IPA,6.80%,16 oz
+15,Beer,Founders All Day,5,Session IPA,4.70%,19.2 oz
+16,Beer,Founders Porter,6,Porter,6.50%,12 oz
+17,Beer,Guiness Draught,7,Stout,4.20%,14.9 oz
+18,Beer,Hoppyalis,6,IPA,7.00%,12 oz
+19,Beer,Jai Alai,7,IPA,7.50%,12 oz
+20,Beer,Mango Kolsch,7,Kolsch,5.50%,16 oz
+21,Beer,Miller Lite,4,Pilsner,4.10%,16 oz
+22,Beer,Modelo Especial,5,Lager,4.40%,12 oz
+23,Beer,Old Rasputin,8,Stout,9.00%,12 oz
+24,Beer,Pabst Blue Ribbon,3,Lager,4.70%,12 oz
+25,Beer,Pranqster,8,Belgian Ale,7.60%,12 oz
+26,Beer,Red Seal,6,Amber/Red Ale,5.40%,12 oz
+27,Beer,Relax,8,IPA,6.80%,16 oz
+28,Beer,Saint Archer Pale Ale,6,Pale Ale,5.50%,12 oz
+29,Beer,Scrimshaw,7,Pilsner,4.40%,Pint
+30,Beer,SuperEIGHT,8,Gose,5.30%,12 oz
+31,Beer,Tropic of Thunder,7,Lager,5.80%,12 oz
+32,Beer,Trumer Pilsner,6,Pilsner,4.80%,12 oz
+33,Beer,Pizza Port Chronic,7,Amber Ale,4.90%,Pint
+34,Beer,Arrogant Bastard,8,Ale,7.20%,19 oz
+35,Cider,Golden State Cider Brut,7,Cider,6.90%,16 oz
+36,Coffee,Coffee,3,,,
+37,Food,Tamale Plate,7 ($5 on Tamale Tues),,,
+38,Food,Sardines and Crackers,5,,,
+39,Tea,Tea,2,,,
+40,Wine,Ecco Domani,8,Pinot,12.50%,5 oz
+41,Wine,J. Lohr,8,Cabernet,13%,5 oz
+42,Wine,Kyla Hard Kombucha,5,Hard Kombucha,4.50%,11 oz
+43,Wine,La Playa Cabernet,8,Cabernet,13%,5 oz
+44,Wine,Leese Fitch Pinot Noir,8,Pinot,13.50%,5 oz
+45,Wine,OZV Rose,8,Rose,13%,5 oz
+46,Wine,White Claw,6,Hard Seltzer,5.00%,12 oz
