@@ -101,15 +101,21 @@ const start = async function() {
     method: 'GET',
     path: '/',
     handler: async function(request, h) {
-      const events = await request.mongo.db.collection('events').find({}).sort({
-        date: -1,
+      let events = await request.mongo.db.collection('events').find({}).sort({
+        date: 1,
         _id: -1
       }).toArray();
       const menu = await request.mongo.db.collection('menu').find({}).sort({
         name: 1,
         _id: -1
       }).toArray();
+      let featuredEvents = [];
+      for (let i=0; i<Math.min(3, events.length); i++) {
+        events[i].featured = true;
+        featuredEvents.push(events[i]);
+      }
       return h.view('index', {
+        featuredEvents: featuredEvents,
         events: events,
         menu: menu
       });

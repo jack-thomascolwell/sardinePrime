@@ -9,7 +9,7 @@
   </div>
   <div class="navbar">
     <ul>
-      <li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>
+      <!--<li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>-->
       <li class="nav-item"><a class="nav-link" src="#menu">Menu</a></li>
       <li class="nav-item"><a class="nav-link" src="#calendar">Calendar</a></li>
       <li class="nav-item"><a class="nav-link" href="https://recessops.com/collections/sardine">Merch</a></li>
@@ -26,14 +26,14 @@
     </h1>
   </div>
   <ul>
-    <li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>
+    <!--<li class="nav-item"><a class="nav-link" src="#featured">Featured</a></li>-->
     <li class="nav-item"><a class="nav-link" src="#menu">Menu</a></li>
     <li class="nav-item"><a class="nav-link" src="#calendar">Calendar</a></li>
     <li class="nav-item"><a class="nav-link" src="https://recessops.com/collections/sardine">Merch</a></li>
   </ul>
 </nav>
 
-<section id="featured">
+<!--<section id="featured">
   <p class="sectionHeader">Featured Events</p>
   {{#unless featuredEvents}}
     No featured events, check back soon
@@ -49,12 +49,7 @@
             <span>{{this.time}}</span>
           </time>
           <p class="eventTitle">{{this.name}}</p>
-          {{#if this.tickets}}
-            <div class="eventTickets"><a href="{{this.tickets}}">Tickets</a></div>
-          {{/if}}
-          {{#unless this.tickets}}
-            <div class="eventTickets disabled"><a href="#">Tickets</a></div>
-          {{/unless}}
+          <div class="eventTickets"><a href="{{this.ticket}}">Tickets</a></div>
           <div class="eventMore">More</div>
           <p class="eventDesc">
             {{#if this.featured}}
@@ -69,7 +64,7 @@
       </div>
     {{/if}}
   {{/each}}
-</section>
+</section>-->
 
 
 <section id="calendar">
@@ -87,21 +82,14 @@
             <span>{{this.time}}</span>
           </time>
           <p class="eventTitle">{{this.name}}</p>
-          {{#if this.tickets}}
-            <div class="eventTickets"><a href="{{this.tickets}}" target="_blank">Tickets</a></div>
-          {{/if}}
-          {{#unless this.tickets}}
-            <div class="eventTickets disabled"><a href="#">Tickets</a></div>
-          {{/unless}}
+          <div class="eventTickets"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
           <div class="eventMore">More</div>
           <p class="eventDesc">
             {{#if this.featured}}
-              {{this.title}}</br>
+              {{this.name}}</br>
             {{/if}}
-            {{#if this.price}}
-              {{this.price}}</br>
-            {{/if}}
-            {{{this.desc}}}
+            {{this.price}}</br>
+            {{{this.description}}}
           </p>
         </div>
       </div>
