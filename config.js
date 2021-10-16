@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    port: 4000,
+    port: process.env.PORT || 4000,
   },
   mongodb: {
     url: `mongodb+srv://jack-thomascolwell:${process.env.DBPASS}@cluster0.vk82t.mongodb.net/sardineDemoDB?retryWrites=true&w=majority`
