@@ -1,40 +1,43 @@
 <form method="post" id="eventNew" enctype="multipart/form-data">
   <div class="heading">Edit Event</div>
 
-  <div class="delete" data-confirm="Delete {{event.name}}" data-url="/admin/events/{{event._id}}">DELETE</div>
-
   {{#if error}}
     <p class="error">{{error}}</p>
   {{/if}}
 
-  <div class="form__group half">
+  <div class="form__group full">
     <input type="text" class="form__field" placeholder="Name" name="name" id="name" value="{{event.name}}" />
     <label for="title" class="form__label">Name</label>
   </div>
 
-  <div class="form__group__area half">
+  <div class="form__group__area full">
     <textarea class="form__field" type="text" name="description" id="description" placeholder="Description">{{event.description}}</textarea>
     <label for="description" class="form__label">Description</label>
   </div>
 
-  <div class="form__group fourth">
+  <div class="form__group third">
     <input type="date" class="form__field" placeholder="Date" name="date" id="date" value="{{event.date}}" />
     <label for="date" class="form__label">Date</label>
   </div>
 
-  <div class="form__group fourth">
+  <div class="form__group third">
     <input type="text" class="form__field" placeholder="Price" name="price" id="price" value="{{event.price}}" />
     <label for="price" class="form__label">Price</label>
   </div>
 
-  <div class="form__group fourth">
+  <div class="form__group third">
     <input type="text" class="form__field" placeholder="Tickets" name="ticket" id="ticket" value="{{event.ticket}}" />
     <label for="published" class="form__label">Tickets</label>
   </div>
 
-  <div class="form__group fourth">
-    <input type="file" class="form__field" placeholder="Image" name="image" id="image" />
-    <label for="image" class="form__label">Image</label>
+  <div class="form__group half">
+    <input type="file" class="form__field" placeholder="Image" name="newImage" id="newImage" />
+    <label for="newImage" class="form__label">Image</label>
+  </div>
+
+  <div class="form__group half">
+    <input type="checkbox" class="form__field" placeholder="Remove Image" name="removeImage" id="removeImage" value="false"/>
+    <label for="removeImage" class="form__label">Remove Image</label>
   </div>
 
   <input type="submit" value="Sumbit">

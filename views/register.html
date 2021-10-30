@@ -1,22 +1,23 @@
-<form method="post" id="logIn">
+<form method="post" id="register" action="/register">
   <div class="heading">Register</div>
   {{#if error}}
     <p class="error">{{error}}</p>
   {{/if}}
 
   <div class="form__group third">
-    <input type="text" class="form__field" placeholder="Username" name="username" id="username" value="{{username}}" required />
-    <label for="username" class="form__label">Username</label>
+    <input type="text" class="form__field" placeholder="Email" name="email" id="email" value="{{email}}" required />
+    <label for="email" class="form__label">Email</label>
   </div>
 
   <div class="form__group third">
     <input type="password" class="form__field" placeholder="Password" name="password" id="password" required />
     <label for="password" class="form__label">Password</label>
   </div>
+
   <div class="form__group third">
-    <input type="password" class="form__field" placeholder="Repeat Password" name="repeat_password" id="repeat_password" required />
-    <label for="repeat_password" class="form__label">Repeat Password</label>
+    <input type="password" class="form__field" placeholder="Repeat password" name="repeat_password" id="repeat_password" required />
+    <label for="repeat_password" class="form__label">Repeat password</label>
   </div>
 
-  <input type="submit" value="Sumbit">
+  <input type="submit" value="Submit">
 </form>

@@ -76,19 +76,17 @@
     {{#each events}}
       <div class="event">
         <div class="eventCover">
-          <img class="eventImg" src="/events/{{this._id}}/image" />
+          <img class="eventImg" onerror="this.src='/public/img/logo.jpg'" src="{{gcloud 0}}events/{{this._id}}/image" />
           <time class="eventDateTime">
-            <span>{{this.date}}</span>
+            <span>{{date this.date}}</span>
             <span>{{this.time}}</span>
           </time>
           <p class="eventTitle">{{this.name}}</p>
-          <div class="eventTickets"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
+          <div class="eventTickets{{#unless this.ticket}} disabled{{/unless}}"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
           <div class="eventMore">More</div>
           <p class="eventDesc">
-            {{#if this.featured}}
-              {{this.name}}</br>
-            {{/if}}
-            {{this.price}}</br>
+            {{this.name}}</br>
+            ${{this.price}}</br>
             {{{this.description}}}
           </p>
         </div>

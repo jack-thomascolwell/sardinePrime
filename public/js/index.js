@@ -27,7 +27,7 @@ document.addEventListener('scroll', e => {
     navbarElement.style.top = '0px';
     scrollToTopElem.classList.remove('hidden');
     if (timeoutScrollToTop != null) clearTimeout(timeoutScrollToTop);
-    timeoutScrollToTop = setTimeout(()=>{
+    timeoutScrollToTop = setTimeout(() => {
       scrollToTopElem.classList.add('hidden');
     }, 2000);
   } else {
@@ -75,7 +75,7 @@ function eventClick(e) {
       let more = evt.getElementsByClassName('eventMore')[0];
       if (more) more.innerHTML = (evt.classList.contains('expanded')) ? 'Less' : 'More';
     });
-    if(!wasExpanded) e.classList.add('expanded');
+    if (!wasExpanded) e.classList.add('expanded');
     let moreButton = e.getElementsByClassName('eventMore')[0];
     if (moreButton) moreButton.innerHTML = (e.classList.contains('expanded')) ? 'Less' : 'More';
   }

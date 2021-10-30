@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,100;1,400&family=Nanum+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fauna+One|Gayathri:100,400,700|Inconsolata:400,700&display=swap");
 html {
   font-size: 87.5%;
 }
@@ -32,180 +36,232 @@ body {
 }
 
 #main {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  grid-gap: 20px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 5vw;
+  padding-right: 5vw;
   box-sizing: border-box;
   width: 100vw;
-  overflow-y: hidden;
+  min-height: 100vh;
 }
 
-#header {
-  grid-row: 1;
-  grid-column: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  align-items: center;
-  border-bottom: 1px solid #FFFFFF;
-}
-#header .title {
-  font-size: 2.666rem;
-  font-family: "Nanum Gothic", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 2px;
+#nav {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "logo links";
   color: #FFFFFF;
-  margin-right: 20px;
+  width: 100%;
+  border-bottom: 1px solid #FFFFFF;
+  background-color: #000000;
+  position: sticky;
+  top: 0;
+  margin-bottom: 10px;
 }
-#header .links {
+#nav .logo {
+  grid-area: logo;
+  height: 15vmin;
+  box-sizing: border-box;
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+}
+#nav .logo img {
+  height: 100%;
+  aspect-ratio: auto;
+  user-select: none;
+}
+#nav .links {
+  grid-area: links;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
+  justify-content: space-around;
+  align-items: stretch;
+  height: 100%;
   flex-wrap: nowrap;
-  width: 30%;
 }
-#header .links li {
-  font-size: 1.5rem;
-  font-family: "Nanum Gothic", sans-serif;
+#nav .links a {
+  box-sizing: border-box;
+  padding-left: 1ex;
+  padding-right: 1ex;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
-  text-transform: capitalize;
+  font-size: 2rem;
+  color: #FFFFFF;
+  background-color: #000000;
+  font-variant: small-caps;
+  letter-spacing: 1px !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#header .email {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  letter-spacing: 0;
-  font-style: normal;
-  font-size: 1.5rem;
-  margin-left: auto;
-}
-#header .logout {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  letter-spacing: 0;
-  font-style: normal;
-  font-size: 1.5rem;
-  margin-left: 1ex;
-}
-#header .logout::before {
-  content: "-";
-  margin-left: 1ex;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  letter-spacing: 0;
-  font-style: normal;
-  font-size: 1.5rem;
+#nav .links a:hover, #nav .links a.active {
+  color: #cccccc;
 }
 
-.page {
-  grid-row: 2;
-  grid-column: 1;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+.textBlock {
+  margin-bottom: 10px;
   box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  color: #FFFFFF;
+  overflow-wrap: break-word;
 }
-.page .title {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 3.554rem;
-  font-family: "Nanum Gothic", sans-serif;
+.textBlock.extraPadding {
+  padding: 20px;
+}
+.textBlock.doubleSpaced p {
+  margin-bottom: calc(5px + 1em);
+}
+.textBlock .heading {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  font-variant: small-caps;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
-  color: #FFFFFF;
+  font-size: 2.666rem;
+  text-align: center;
 }
-.page .title .new {
-  font-size: 3.554rem;
-  font-family: "Nanum Gothic", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 2px;
-  margin-left: auto;
-  text-transform: uppercase;
-}
-.page .none {
-  font-size: 1.5rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 100;
-  letter-spacing: 0;
-  font-style: normal;
-  color: #FFFFFF;
-  text-align: left;
-}
-.page .row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  text-align: left;
-  margin-bottom: 2em;
-}
-.page .row:last-child {
+.textBlock .heading:last-child {
   margin-bottom: 0;
 }
-.page .row .cell {
-  font-family: "Montserrat", sans-serif;
+.textBlock p {
+  font-family: "Gayathri", sans-serif;
   font-weight: 100;
   letter-spacing: 0;
   font-style: normal;
-  font-size: 1.25rem;
-}
-.page .row.header {
-  font-weight: 400;
-}
-.page .row.header .cell {
-  font-weight: 400;
-  color: #FFFFFF;
+  font-size: 1.5rem;
   text-align: left;
+  margin-bottom: 5px;
 }
-.page .row .event {
-  width: 15%;
+.textBlock p:last-child {
+  margin-bottom: 0;
 }
-.page .row .datetime {
-  width: 15%;
+
+.titleBlock {
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  color: #FFFFFF;
+  overflow-wrap: break-word;
 }
-.page .row .price {
-  width: 15%;
+.titleBlock.extraPadding {
+  padding: 20px;
 }
-.page .row .description {
-  width: 30%;
+.titleBlock .heading {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  font-variant: small-caps;
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2px;
+  font-size: 3.554rem;
+  text-align: center;
 }
-.page .row .tickets {
-  width: 15%;
+.titleBlock .heading:last-child:first-child {
+  border-bottom: none;
 }
-.page .row .name {
-  width: 15%;
+.titleBlock p {
+  font-family: "Gayathri", sans-serif;
+  font-weight: 100;
+  letter-spacing: 0;
+  font-style: normal;
+  font-size: 2rem;
+  text-align: center;
+  text-align: left;
+  margin-bottom: 5px;
 }
-.page .row .type {
-  width: 15%;
+.titleBlock p:last-child {
+  margin-bottom: 0;
 }
-.page .row .subtype {
-  width: 15%;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Inconsolata", monospace;
+  font-weight: 100;
+  letter-spacing: 0;
+  font-style: normal;
+  font-size: 2.666rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  background-color: #FFFFFF;
+  color: #000000;
+  margin-bottom: 10px;
 }
-.page .row .alcohol {
-  width: 15%;
+.button:hover {
+  color: #333333;
 }
-.page .row .volume {
-  width: 15%;
+
+.cover {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2ex auto 2ex auto;
+  grid-template-rows: auto;
+  grid-template-areas: "name . edit . delete";
+  font-family: "Inconsolata", monospace;
+  font-weight: 100;
+  letter-spacing: 0;
+  font-style: normal;
+  font-size: 1.5rem;
+  color: #000000;
+  background: #FFFFFF;
+  margin-bottom: 10px;
+}
+.cover .name {
+  grid-area: name;
+  width: 100%;
+  overflow-x: scroll;
+}
+.cover .edit {
+  grid-area: edit;
+  color: #000000;
+  cursor: pointer;
+}
+.cover .edit:hover {
+  color: #333333 !important;
+}
+.cover .delete {
+  grid-area: delete;
+  color: #000000;
+}
+.cover .delete:hover {
+  color: #333333 !important;
+}
+.cover .delete.disabled {
+  text-decoration: line-through;
+}
+.cover .disabled {
+  cursor: not-allowed;
+}
+.cover .disabled:hover {
+  color: #000000 !important;
 }
 
 form {
   width: 100%;
-  z-index: 2;
   color: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -218,9 +274,9 @@ form .heading {
   width: 100%;
   margin-bottom: 5px;
   padding-bottom: 5px;
-  border-bottom: 2px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
   font-variant: small-caps;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
@@ -229,7 +285,7 @@ form .heading {
 }
 form .delete {
   color: #FFFFFF;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gayathri", sans-serif;
   font-weight: 100;
   letter-spacing: 0;
   font-style: normal;
@@ -247,7 +303,7 @@ form .delete:hover {
 form .error {
   width: 100%;
   color: #cccccc;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gayathri", sans-serif;
   font-weight: 100;
   letter-spacing: 0;
   font-style: normal;
@@ -270,6 +326,9 @@ form .form__group.third {
 form .form__group.fourth {
   width: calc((100% - 40px) / 4);
 }
+form .form__group.fifth {
+  width: calc((100% - 50px) / 5);
+}
 form .form__group.half {
   width: calc((100% - 20px) / 2);
 }
@@ -282,7 +341,7 @@ form .form__group .form__field {
   border-bottom: 1px solid #cccccc;
   outline: none;
   font-size: 1.5rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gayathri", sans-serif;
   font-weight: 100;
   letter-spacing: 0;
   font-style: normal;
@@ -319,7 +378,7 @@ form .form__group .form__label {
   bottom: 100%;
   transform: translateY(100%);
   font-size: 0.75rem;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
@@ -357,7 +416,7 @@ form .form__group__area .form__field {
   border-bottom: 1px solid #cccccc;
   outline: none;
   font-size: 1.5rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Gayathri", sans-serif;
   font-weight: 100;
   letter-spacing: 0;
   font-style: normal;
@@ -394,14 +453,14 @@ form .form__group__area .form__label {
   bottom: 100%;
   transform: translateY(100%);
   font-size: 0.75rem;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
   color: #cccccc;
 }
 form .subheading {
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;
@@ -417,9 +476,8 @@ form input[type=submit] {
   width: 100%;
   background: transparent;
   color: #FFFFFF;
-  text-shadow: 1px 1px #cccccc;
   font-size: 2rem;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "DM Serif Text", serif;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 2px;

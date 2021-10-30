@@ -16,38 +16,34 @@
 
     gtag('config', 'UA-151954585-1');
   </script>-->
-  {{#if admin}}
-    <link rel="stylesheet" href="/public/css/reset.css">
-    <link rel="stylesheet" href="/public/css/admin.css">
-    <script src="/public/js/delete.js" defer></script>
-  {{else}}
+  <link rel="shortcut icon" href="/public/img/favicon.ico" />
+  <link rel="stylesheet" href="/public/css/reset.css">
+  {{#if landing}}
     <link href="/public/css/index.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" href="/public/img/favicon.ico" />
     <script src="/public/js/index.js" defer></script>
+  {{else}}
+    <link rel="stylesheet" href="/public/css/admin.css">
+    <script src="/public/js/admin.js" defer></script>
   {{/if}}
 </head>
 
 <body>
-  {{#if admin}}
+  {{#if landing}}
+    {{{content}}}
+  {{else}}
     <div id="main">
-      {{#unless loggingIn}}
-        <div id="header">
-          <a href="/" class="title">The Sardine</a>
-          <ul class="links">
-            <li>Users</li>
-            <li>Events</li>
-            <li>Menu</li>
-          </ul>
-          <div class="email">test@recessops.com</div>
-          <a href="/logout" class="logout">Logout</a>
+      {{#unless login}}
+        <div id="nav">
+          <a href="/" class="logo"><img src="/public/img/logo.jpg"/></a>
+          <div class="links">
+            <a href="/admin/users" id="nav-users">Users</a>
+            <a href="/admin/events" id="nav-events">Events</a>
+            <a href="/admin/menu" id="nav-menu">Menu</a>
+          </div>
         </div>
       {{/unless}}
-      <div class="page">
-        {{{content}}}
-      </div>
+      {{{content}}}
     </div>
-  {{else}}
-    {{{content}}}
   {{/if}}
 </body>
 

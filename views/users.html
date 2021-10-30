@@ -1,0 +1,21 @@
+<div class="titleBlock">
+  <div class="heading">Manage Users</div>
+</div>
+
+{{#each users}}
+  <div class="cover">
+    <p class="name">{{this.email}}</p>
+    <a class="admin edit" data-confirm="{{#if this.admin}}Remove admin from{{else}}Give admin to{{/if}} {{this.email}}?"data-admin="{{this.admin}}" data-url="/admin/users/{{this._id}}">Admin {{#if this.admin}}&#9746;{{else}}&#9744;{{/if}}</a>
+    <a class="delete" data-confirm="Delete {{this.email}}" data-url="/admin/users/{{this._id}}">Delete</a>
+  </div>
+{{/each}}
+
+<div class="cover">
+  <p class="name">{{self.email}}</p>
+  <p class="edit disabled">Admin {{#if self.admin}}&#9746;{{else}}&#9744;{{/if}}</p>
+  <a class="delete disabled">Delete</a>
+</div>
+
+<script type="text/javascript">
+    document.getElementById('nav-users').classList.add('active');
+</script>

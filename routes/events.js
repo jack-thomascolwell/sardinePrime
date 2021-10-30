@@ -1,5 +1,11 @@
 const Joi = require('joi');
+const Stream = require('stream');
 const config = require('../config');
+
+const {
+  deleteFile,
+  uploadFileStream
+} = require('../files');
 
 /*
 Event Schema
@@ -9,8 +15,7 @@ name: string,
 date: datetime,
 price: string,
 description: string,
-ticket: string,
-image: ObjectID
+ticket: string
 }
 */
 
@@ -23,12 +28,11 @@ module.exports = [{
       return h.redirect('/');
 
     const events = await request.mongo.db.collection('events').find({}).sort({
-      date: -1,
+      date: 1,
       _id: -1
     }).toArray();
     return h.view('events', {
-      events: events,
-      admin: true
+      events: events
     });
   }
 }, {
@@ -38,16 +42,14 @@ module.exports = [{
     if (!request.auth.isAuthenticated || (request.auth.credentials.admin !== true))
       return h.redirect('/');
     const id = request.params.id;
-
     const thisEvent = await request.mongo.db.collection('events').findOne({
       _id: new request.mongo.ObjectID(id)
     });
 
-    if (!thisEvent) return h.redirect('/admin/menu');
+    if (!thisEvent) return h.response('Event not found').code(404);
 
     return h.view('event', {
       event: thisEvent,
-      admin: true
     });
   },
   options: {
@@ -72,16 +74,17 @@ module.exports = [{
     if (!thisEvent) return h.redirect('/admin/events');
 
     let payload = request.payload;
-    if (payload.image.hapi.filename == '') payload.image = undefined;
+    if (payload.newImage && payload.newImage.hapi.filename == '') payload.newImage = undefined;
 
     const schema = Joi.object({
       _id: Joi.any().forbidden(),
       name: Joi.string(),
       date: Joi.date(),
-      price: Joi.string(),
-      description: Joi.string(),
-      ticket: Joi.string(),
-      image: Joi.any(),
+      price: Joi.string().allow(''),
+      description: Joi.string().allow(''),
+      ticket: Joi.string().allow(''),
+      newImage: Joi.any(),
+      removeImage: Joi.boolean(),
     });
     const {
       error,
@@ -91,8 +94,7 @@ module.exports = [{
     if (error) {
       return h.view('event', {
         event: payload,
-        error: error,
-        admin: true
+        error: error
       });
     }
 
@@ -104,21 +106,12 @@ module.exports = [{
       ticket: payload.ticket,
     }
 
-    if (payload.image) {
-      const bucket = new request.mongo.lib.GridFSBucket(request.mongo.db);
-      const oldImage = thisEvent.image;
-      const oldImageDoc = await bucket.find({
-        _id: oldImage
-      });
-      if (oldImageDoc && oldImageDoc[0]) await bucket.delete(oldImage);
-      const newImage = (payload.image.pipe(bucket.openUploadStream('image', {
-        chunkSizeBytes: 1048576,
-        metadata: {
-          originalFilename: payload.image.hapi.filename,
-          type: payload.image.hapi.headers['content-type']
-        }
-      })).id);
-      eventUpdate.image = newImage;
+    if (payload.removeImage) {
+      await deleteFile(`events/${id}/image`);
+    } else if (payload.newImage) {
+      await deleteFile(`events/${id}/image`);
+      const blobStream = uploadFileStream(`events/${id}/image`);
+      payload.newImage.pipe(blobStream);
     }
 
     const status = await request.mongo.db.collection('events').updateOne({
@@ -154,15 +147,13 @@ module.exports = [{
       _id: new request.mongo.ObjectID(id),
     }, {
       projection: {
-        image: 1,
         _id: 1
       }
     });
 
     if (!thisEvent) return false;
 
-    const bucket = new request.mongo.lib.GridFSBucket(request.mongo.db);
-    bucket.delete(thisEvent.image);
+    await deleteFile(`events/${id}/image`);
 
     const status = await request.mongo.db.collection('events').deleteOne({
       _id: new request.mongo.ObjectID(id)
@@ -182,9 +173,7 @@ module.exports = [{
   handler: async function(request, h) {
     if (!request.auth.isAuthenticated || (request.auth.credentials.admin !== true))
       return h.redirect('/');
-    return h.view('event-new', {
-      admin: true
-    });
+    return h.view('event-new');
   }
 }, {
   method: 'POST',
@@ -195,16 +184,16 @@ module.exports = [{
 
     let payload = request.payload;
 
-    if (payload.image.hapi.filename == '') payload.image = undefined;
+    if (payload.image && payload.image.hapi.filename == '') payload.image = undefined;
 
     const schema = Joi.object({
       _id: Joi.any().forbidden(),
       name: Joi.string().required(),
       date: Joi.date().required(),
-      price: Joi.string().required(),
-      description: Joi.string().required(),
-      ticket: Joi.string().required(),
-      image: Joi.any().required(),
+      price: Joi.string().allow(''),
+      description: Joi.string().allow(''),
+      ticket: Joi.string().allow(''),
+      image: Joi.any(),
     });
     const {
       error,
@@ -212,34 +201,31 @@ module.exports = [{
     } = schema.validate(payload);
 
     if (error) {
+      console.log(['error', error, payload]);
       return h.view('event-new', {
         event: payload,
         error: error,
-        admin: true
       });
     }
 
-    const bucket = new request.mongo.lib.GridFSBucket(request.mongo.db);
-    const imageID = (payload.image.pipe(bucket.openUploadStream('image', {
-      chunkSizeBytes: 1048576,
-      metadata: {
-        originalFilename: payload.image.hapi.filename,
-        type: payload.image.hapi.headers['content-type']
-      }
-    })).id);
-
-    const eventUpdate = {
+    const newEvent = {
       name: payload.name,
       date: payload.date,
       price: payload.price,
       description: payload.description,
       ticket: payload.ticket,
-      image: imageID
-    };
+    }
 
-    const status = await request.mongo.db.collection('events').insertOne(eventUpdate);
-    if (status.acknowledged === true) return h.redirect(`/admin/events`);
-    return status.acknowledged;
+    const status = await request.mongo.db.collection('events').insertOne(newEvent);
+    if (status.acknowledged !== true) return false;
+
+    // File uploads
+    if (payload.image) {
+      const blobStream = uploadFileStream(`events/${status.insertedId}/image`);
+      payload.image.pipe(blobStream);
+    }
+
+    return h.redirect(`/admin/events`);
   },
   options: {
     payload: {
@@ -248,39 +234,5 @@ module.exports = [{
       parse: true,
       multipart: true
     },
-  }
-}, {
-  method: 'GET',
-  path: '/events/{id}/image',
-  handler: async (request, h) => {
-    const id = request.params.id;
-    const thisEvent = await request.mongo.db.collection('events').findOne({
-      _id: new request.mongo.ObjectID(id),
-    }, {
-      projection: {
-        image: 1,
-        _id: 1,
-      }
-    });
-    if (!thisEvent) return h.response('Event not found').code(404);
-    const bucket = new request.mongo.lib.GridFSBucket(request.mongo.db);
-    const matchingIDs = await bucket.find({
-      _id: thisEvent.image
-    }).project({
-      _id: 1,
-      filename: 1,
-      metadata: 1,
-    }).toArray();
-    if (!matchingIDs || !matchingIDs[0]) return h.response('Image not found').code(404);
-    const stream = bucket.openDownloadStream(matchingIDs[0]._id);
-    return h.response(stream).header('Content-Disposition', `attachment; filename= ${matchingIDs[0].metadata.originalFilename}`).type(matchingIDs[0].metadata.type);
-  },
-  options: {
-    auth: false,
-    validate: {
-      params: Joi.object({
-        id: Joi.string().required()
-      })
-    }
   }
 }];

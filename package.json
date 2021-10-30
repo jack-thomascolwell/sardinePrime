@@ -18,13 +18,16 @@
   },
   "homepage": "https://github.com/jack-thomascolwell/sardine#readme",
   "dependencies": {
+    "@google-cloud/storage": "^5.15.3",
     "@hapi/cookie": "^11.0.2",
     "@hapi/hapi": "^20.1.5",
     "@hapi/inert": "^6.0.4",
     "@hapi/vision": "^6.1.0",
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "handlebars": "^4.7.7",
     "hapi-mongodb": "^10.0.1",
-    "joi": "^17.4.2"
+    "joi": "^17.4.2",
+    "moment": "^2.29.1"
   }
 }

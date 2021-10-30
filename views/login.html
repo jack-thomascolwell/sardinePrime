@@ -1,12 +1,12 @@
-<form method="post" id="logIn">
+<form method="post" id="login" action="/admin">
   <div class="heading">Log In</div>
   {{#if error}}
     <p class="error">{{error}}</p>
   {{/if}}
 
   <div class="form__group half">
-    <input type="text" class="form__field" placeholder="Username" name="username" id="username" value="{{username}}" required />
-    <label for="username" class="form__label">Username</label>
+    <input type="text" class="form__field" placeholder="Email" name="email" id="email" value="{{email}}" required />
+    <label for="email" class="form__label">Email</label>
   </div>
 
   <div class="form__group half">
@@ -14,5 +14,5 @@
     <label for="password" class="form__label">Password</label>
   </div>
 
-  <input type="submit" value="Sumbit">
+  <input type="submit" value="Submit">
 </form>

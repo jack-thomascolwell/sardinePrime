@@ -21,8 +21,7 @@ module.exports = [{
       _id: -1
     }).toArray();
     return h.view('menu', {
-      menu: menu,
-      admin: true
+      menu: menu
     });
   }
 }, {
@@ -38,10 +37,9 @@ module.exports = [{
     });
 
     if (!menuItem) return h.redirect('/admin/menu');
-    
+
     return h.view('menuItem', {
-      menuItem: menuItem,
-      admin: true
+      menuItem: menuItem
     });
   },
   options: {
@@ -66,15 +64,14 @@ module.exports = [{
     if (!menuItem) return h.redirect('/admin/menu');
 
     let payload = request.payload;
-    console.log(payload);
     const schema = Joi.object({
       _id: Joi.any().forbidden(),
       type: Joi.string(),
       name: Joi.string(),
       price: Joi.string(),
-      subtype: Joi.string(),
-      pctAlcohol: Joi.string(),
-      volume: Joi.string()
+      subtype: Joi.string().allow(''),
+      pctAlcohol: Joi.string().allow(''),
+      volume: Joi.string().allow('')
     });
     const {
       error,
@@ -84,8 +81,7 @@ module.exports = [{
     if (error) {
       return h.view('menuItem', {
         menuItem: payload,
-        error: error,
-        admin: true
+        error: error
       });
     }
 
@@ -103,7 +99,7 @@ module.exports = [{
     }, {
       $set: menuUpdate
     });
-    if (status.acknowledged === true) return h.redirect(`/admin/menu/`);
+    if (status.acknowledged === true) return h.redirect(`/admin/menu`);
     return status.acknowledged;
   },
   options: {
@@ -149,9 +145,7 @@ module.exports = [{
   handler: async function(request, h) {
     if (!request.auth.isAuthenticated || (request.auth.credentials.admin !== true))
       return h.redirect('/');
-    return h.view('menu-new', {
-      admin: true
-    });
+    return h.view('menu-new');
   }
 }, {
   method: 'POST',
@@ -168,9 +162,9 @@ module.exports = [{
       type: Joi.string().required(),
       name: Joi.string().required(),
       price: Joi.string().required(),
-      subtype: Joi.string().required(),
-      pctAlcohol: Joi.string().required(),
-      volume: Joi.string().required()
+      subtype: Joi.string().allow(''),
+      pctAlcohol: Joi.string().allow(''),
+      volume: Joi.string().allow('')
     });
     const {
       error,
@@ -180,8 +174,7 @@ module.exports = [{
     if (error) {
       return h.view('menu-new', {
         menuItem: payload,
-        error: error,
-        admin: true
+        error: error
       });
     }
 

@@ -4,26 +4,169 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Fauna+One|Gayathri:100,400,700|Inconsolata:400,700&display=swap');
-
 //CSS RESET (DO NOT EDIT)
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}a:hover{color:inherit}
-//END CSS RESET
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+//END CSS RESET
 //parameters
 $black: #000000;
 $white: #FFFFFF;
 $fontSerif: 'DM Serif Text', serif;
 $fontSansSerif: 'Gayathri', sans-serif;
 $fontMonospace: 'Inconsolata', monospace;
-$imageFilter: none;
-//end parameters
+$imageFilter: none; //end parameters
+
+@mixin hideScrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 html {
   font-family: sans-serif;
   line-height: 1.15;
 }
 
-body::-webkit-scrollbar { //remove scrollbar
+body::-webkit-scrollbar {
+  //remove scrollbar
   display: none;
 }
 
@@ -38,7 +181,6 @@ body {
   color: $white; //standard font color
   text-align: left;
 }
-
 //configure headers
 h1 {
   font-size: 2.5rem;
@@ -54,7 +196,6 @@ h6 {
   font-weight: 500;
   line-height: 1.2;
 }
-
 //responsive design
 @media (max-width: 640px) {
   .navbar {
@@ -90,7 +231,6 @@ h6 {
     float: left;
   }
 }
-
 //Site heading
 #site-heading .heading {
   margin-top: 2.5rem;
@@ -135,7 +275,6 @@ h6 {
   line-height: 4rem;
   margin-bottom: 0.5rem;
 }
-
 //Navigation Bar
 .navbar {
   margin: 0 2.5rem;
@@ -237,7 +376,6 @@ h6 {
 .nav-link {
   font-variant: small-caps;
 }
-
 //Event calendar
 #calendar {
   width: calc(100vw - 10rem);
@@ -258,7 +396,6 @@ h6 {
   align-items: flex-start;
   align-content: flex-start;
 }
-
 //events
 .event {
   border-radius: 0.25rem;
@@ -327,6 +464,7 @@ h6 {
   grid-row-end: 4;
   padding: 0 0.25rem;
   overflow-y: scroll;
+  @include hideScrollbar;
 }
 
 .eventTickets {
@@ -340,7 +478,7 @@ h6 {
   text-align: center;
   font-weight: bold;
   padding: 0.25rem;
-  font-family: $fontMonospace
+  font-family: $fontMonospace;
 }
 
 .eventMore {
@@ -384,7 +522,6 @@ h6 {
 .eventDesc::-webkit-scrollbar {
   display: none;
 }
-
 //featured events
 #featured {
   margin: 1rem 5rem;
@@ -451,7 +588,6 @@ h6 {
 #featured .eventCover .eventMore {
   display: none;
 }
-
 //section headings
 .sectionHeader {
   font-size: 3rem;
@@ -461,7 +597,6 @@ h6 {
   text-align: center;
   font-family: $fontSerif;
 }
-
 //scroll to top button
 #scrollToTop {
   display: inline-block;
@@ -493,7 +628,6 @@ h6 {
   opacity: 0;
   pointer-events: none;
 }
-
 //menu
 #menu {
   width: calc(100vw - 10rem);
@@ -511,12 +645,11 @@ h6 {
   width: 100%;
   list-style: none;
 }
-
 //menu section
 .menuSection {
   float: left;
-  width: 30%;
-  margin: 10px 10%;
+  width: 40%;
+  margin: 10px 5%;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -524,7 +657,6 @@ h6 {
   align-items: center;
   list-style: none;
 }
-
 //menu section headers
 .menuSectionHeader {
   text-transform: capitalize;
@@ -536,9 +668,7 @@ h6 {
   font-weight: bold;
   margin-bottom: 5px;
   padding: 0.15rem;
-
 }
-
 //menu items
 .menuItem {
   width: 100%;
@@ -550,7 +680,6 @@ h6 {
   justify-content: space-between;
   align-items: baseline;
 }
-
 //menu item prices
 .menuItemPrice {
   text-align: right;
@@ -558,7 +687,8 @@ h6 {
   font-family: $fontMonospace;
 }
 
-.menuItemPrice::before { //append dollar sign
+.menuItemPrice::before {
+  //append dollar sign
   content: "$";
   font-weight: light;
   font-family: $fontMonospace;
