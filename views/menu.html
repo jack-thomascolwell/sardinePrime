@@ -6,7 +6,7 @@
 
 {{#each menu}}
   <div class="cover">
-    <p class="name">{{this.name}}</p>
+    <p class="name">{{this.name}} [{{lowercasetrim this.type}}]</p>
     <a class="edit" href="/admin/menu/{{this._id}}">Edit</a>
     <a class="delete" data-confirm="Delete {{this.name}}" data-url="/admin/menu/{{this._id}}">Delete</a>
   </div>

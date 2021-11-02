@@ -61,6 +61,8 @@ module.exports = [{
   method: 'GET',
   path: '/admin',
   handler: function(request, h) {
+    if (request.auth.isAuthenticated && (request.auth.credentials.admin === true))
+      return h.redirect('/admin/events');
     if (request.auth.isAuthenticated)
       return h.redirect('/');
 
@@ -77,6 +79,8 @@ module.exports = [{
   method: 'POST',
   path: '/admin',
   handler: async (request, h) => {
+    if (request.auth.isAuthenticated && (request.auth.credentials.admin === true))
+      return h.redirect('/admin/events');
     if (request.auth.isAuthenticated)
       return h.redirect('/');
 
@@ -120,6 +124,9 @@ module.exports = [{
       _id: account._id
     });
 
+    if (account.admin === true)
+      return h.redirect('/admin/events');
+
     return h.redirect('/');
   },
   options: {
@@ -143,6 +150,8 @@ module.exports = [{
   method: 'GET',
   path: '/register',
   handler: async (request, h) => {
+    if (request.auth.isAuthenticated && (request.auth.credentials.admin === true))
+      return h.redirect('/admin/events');
     if (request.auth.isAuthenticated)
       return h.redirect('/');
     return h.view('register', {
@@ -158,7 +167,8 @@ module.exports = [{
   method: 'POST',
   path: '/register',
   handler: async (request, h) => {
-
+    if (request.auth.isAuthenticated && (request.auth.credentials.admin === true))
+      return h.redirect('/admin/events');
     if (request.auth.isAuthenticated)
       return h.redirect('/');
 

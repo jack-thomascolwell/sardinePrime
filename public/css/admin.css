@@ -483,6 +483,7 @@ form input[type=submit] {
   letter-spacing: 2px;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 form input[type=submit]:active, form input[type=submit]:hover {
   color: #cccccc;

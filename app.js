@@ -6,7 +6,15 @@ const Bcrypt = require('bcrypt');
 const Hapi = require('@hapi/hapi');
 const Joi = require('joi');
 const fs = require('fs');
+const cron = require('node-cron');
 const config = require('./config');
+
+const {
+  deleteFile
+} = require('./files');
+
+//Date() fix
+for (let i = 0; i < 10; i++) new Date();
 
 const start = async function() {
 
@@ -110,8 +118,17 @@ const start = async function() {
     method: 'GET',
     path: '/',
     handler: async function(request, h) {
-      let events = await request.mongo.db.collection('events').find({}).sort({
-        date: -1,
+      const today = new Date(Date.now());
+      today.setHours(0);
+      today.setMinutes(0);
+      today.setSeconds(0);
+      today.setMilliseconds(0);
+      let events = await request.mongo.db.collection('events').find({
+        date: {
+          $gte: today
+        }
+      }).sort({
+        date: 1,
         _id: -1
       }).toArray();
       const menu = await request.mongo.db.collection('menu').find({}).sort({
@@ -119,14 +136,13 @@ const start = async function() {
         _id: -1
       }).toArray();
 
-      const menuSections = {
-        food: [],
-        drinks: [],
-      };
+      const menuSections = {};
       for (const item of menu) {
-        if (item.type === 'food') menuSections['food'].push(item);
-        else menuSections['drinks'].push(item);
+        const type = item.type.toLowerCase().trim();
+        if (!menuSections[type]) menuSections[type] = [];
+        menuSections[type].push(item);
       }
+      console.log(menuSections)
       /*let featuredEvents = [];
       for (let i=0; i<Math.min(3, events.length); i++) {
         events[i].featured = true;
@@ -142,6 +158,36 @@ const start = async function() {
     options: {
       auth: false
     }
+  });
+
+  // DB Cleanup
+  console.log()
+  cron.schedule('1 0 * * *', async function() {
+    const today = new Date(Date.now());
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+    console.log(`Starting old event cleanup`);
+    const oldEvents = await server.mongo.db.collection('events').find({
+      date: {
+        $lt: today
+      }
+    }, {
+      projection: {
+        _id: 1
+      }
+    }).toArray();
+    for (const oldEvent of oldEvents) {
+      await deleteFile(`events/${oldEvent._id}/image`);
+
+      const status = await server.mongo.db.collection('events').deleteOne({
+        _id: oldEvent._id
+      });
+      console.log(`Deleted old event ${oldEvent._id} with result ${status.acknowledged}\n`);
+    }
+    console.log(`Finished old event cleanup (deleted ${oldEvents.length} events)`);
+
   });
 
   await server.start();

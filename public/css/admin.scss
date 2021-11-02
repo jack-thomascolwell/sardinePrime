@@ -538,6 +538,7 @@ form {
     @include textTitle;
     border: none;
     outline: none;
+    cursor: pointer;
 
     &:active,
     &:hover {

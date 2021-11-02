@@ -85,8 +85,7 @@
           <div class="eventTickets{{#unless this.ticket}} disabled{{/unless}}"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
           <div class="eventMore">More</div>
           <p class="eventDesc">
-            {{this.name}}</br>
-            ${{this.price}}</br>
+            {{#if this.price}}${{this.price}}</br>{{/if}}
             {{{this.description}}}
           </p>
         </div>
@@ -103,7 +102,7 @@
         <p class="menuSectionHeader">{{@key}}</p>
         {{#each this}}
           <li class="menuItem">
-            <span class="menuItemName">{{this.name}} {{#if this.hasMetadata}}({{#if this.subtype}}{{this.subtype}} {{/if}}{{#if this.alcohol}}{{this.alcohol}} {{/if}}{{#if this.volume}}{{this.volume}}{{/if}}){{/if}}</span>
+            <span class="menuItemName">{{this.name}} {{#hasmeta this}}({{#if this.subtype}}{{this.subtype}} {{/if}}{{#if this.alcohol}}{{this.alcohol}} {{/if}}{{#if this.volume}}{{this.volume}}{{/if}}){{/hasmeta}}</span>
             <span class="menuItemPrice">{{this.price}}</span>
           </li>
         {{/each}}

@@ -47,7 +47,7 @@ module.exports = [{
     });
 
     if (!thisEvent) return h.response('Event not found').code(404);
-
+    console.log(thisEvent);
     return h.view('event', {
       event: thisEvent,
     });
@@ -99,19 +99,20 @@ module.exports = [{
     }
 
     const eventUpdate = {
-      name: payload.name,
-      date: payload.date,
-      price: payload.price,
-      description: payload.description,
-      ticket: payload.ticket,
+      name: value.name,
+      date: value.date,
+      price: value.price,
+      description: value.description,
+      ticket: value.ticket,
     }
+    console.log([eventUpdate,value]);
 
-    if (payload.removeImage) {
+    if (value.removeImage) {
       await deleteFile(`events/${id}/image`);
-    } else if (payload.newImage) {
+    } else if (value.newImage) {
       await deleteFile(`events/${id}/image`);
       const blobStream = uploadFileStream(`events/${id}/image`);
-      payload.newImage.pipe(blobStream);
+      value.newImage.pipe(blobStream);
     }
 
     const status = await request.mongo.db.collection('events').updateOne({
@@ -201,7 +202,6 @@ module.exports = [{
     } = schema.validate(payload);
 
     if (error) {
-      console.log(['error', error, payload]);
       return h.view('event-new', {
         event: payload,
         error: error,
@@ -209,20 +209,20 @@ module.exports = [{
     }
 
     const newEvent = {
-      name: payload.name,
-      date: payload.date,
-      price: payload.price,
-      description: payload.description,
-      ticket: payload.ticket,
+      name: value.name,
+      date: value.date,
+      price: value.price,
+      description: value.description,
+      ticket: value.ticket,
     }
 
     const status = await request.mongo.db.collection('events').insertOne(newEvent);
     if (status.acknowledged !== true) return false;
 
     // File uploads
-    if (payload.image) {
+    if (value.image) {
       const blobStream = uploadFileStream(`events/${status.insertedId}/image`);
-      payload.image.pipe(blobStream);
+      value.image.pipe(blobStream);
     }
 
     return h.redirect(`/admin/events`);

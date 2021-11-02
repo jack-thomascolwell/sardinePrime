@@ -6,7 +6,7 @@
 
 {{#each events}}
   <div class="cover">
-    <p class="name">{{this.name}}</p>
+    <p class="name">{{this.name}} ({{date this.date}})</p>
     <a class="edit" href="/admin/events/{{this._id}}">Edit</a>
     <a class="delete" data-confirm="Delete {{this.name}}" data-url="/admin/events/{{this._id}}">Delete</a>
   </div>

@@ -7,7 +7,7 @@
 
   <div class="form__group full">
     <input type="text" class="form__field" placeholder="Name" name="name" id="name" value="{{event.name}}" />
-    <label for="title" class="form__label">Name</label>
+    <label for="name" class="form__label">Name</label>
   </div>
 
   <div class="form__group__area full">
@@ -16,7 +16,7 @@
   </div>
 
   <div class="form__group third">
-    <input type="date" class="form__field" placeholder="Date" name="date" id="date" value="{{event.date}}" />
+    <input type="date" class="form__field" placeholder="Date" name="date" id="date" value="{{dateInput event.date}}" />
     <label for="date" class="form__label">Date</label>
   </div>
 
@@ -27,7 +27,7 @@
 
   <div class="form__group third">
     <input type="text" class="form__field" placeholder="Tickets" name="ticket" id="ticket" value="{{event.ticket}}" />
-    <label for="published" class="form__label">Tickets</label>
+    <label for="ticket" class="form__label">Tickets</label>
   </div>
 
   <div class="form__group half">
