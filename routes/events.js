@@ -23,7 +23,6 @@ module.exports = [{
   method: 'GET',
   path: '/admin/events',
   handler: async function(request, h) {
-    console.log([request.auth.isAuthenticated, request.auth.credentials.admin]);
     if (!request.auth.isAuthenticated || (request.auth.credentials.admin !== true))
       return h.redirect('/');
 
@@ -47,7 +46,6 @@ module.exports = [{
     });
 
     if (!thisEvent) return h.response('Event not found').code(404);
-    console.log(thisEvent);
     return h.view('event', {
       event: thisEvent,
     });
@@ -105,7 +103,6 @@ module.exports = [{
       description: value.description,
       ticket: value.ticket,
     }
-    console.log([eventUpdate,value]);
 
     if (value.removeImage) {
       await deleteFile(`events/${id}/image`);

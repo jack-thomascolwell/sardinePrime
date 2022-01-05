@@ -31,7 +31,10 @@ const start = async function() {
   const storage = new Storage();
 
   const server = Hapi.server({
-    port: config.server.port
+    port: config.server.port,
+    state: {
+      isSameSite: 'Lax'
+    }
   });
 
   // PLUGINS
@@ -142,7 +145,6 @@ const start = async function() {
         if (!menuSections[type]) menuSections[type] = [];
         menuSections[type].push(item);
       }
-      console.log(menuSections)
       /*let featuredEvents = [];
       for (let i=0; i<Math.min(3, events.length); i++) {
         events[i].featured = true;
@@ -161,7 +163,6 @@ const start = async function() {
   });
 
   // DB Cleanup
-  console.log()
   cron.schedule('1 0 * * *', async function() {
     const today = new Date(Date.now());
     today.setHours(0);

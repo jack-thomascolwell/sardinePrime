@@ -530,7 +530,7 @@ h6 {
   display: grid;
   height: 100%;
   width: 100%;
-  grid-template-columns: 1fr repeat(2, calc((100vw - 10rem)/4));
+  grid-template-columns: 1fr repeat(2, calc((100vw - 10rem) / 4));
   grid-template-rows: 2rem 2rem 1fr 2rem;
 }
 

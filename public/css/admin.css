@@ -54,6 +54,7 @@ body {
   grid-template-areas: "logo links";
   color: #FFFFFF;
   width: 100%;
+  height: 15vmin;
   border-bottom: 1px solid #FFFFFF;
   background-color: #000000;
   position: sticky;
@@ -234,6 +235,12 @@ body {
   grid-area: name;
   width: 100%;
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+.cover .name::-webkit-scrollbar {
+  display: none;
 }
 .cover .edit {
   grid-area: edit;
