@@ -8,6 +8,7 @@ const Joi = require('joi');
 const fs = require('fs');
 const cron = require('node-cron');
 const config = require('./config');
+const moment = require('moment-timezone');
 
 const {
   deleteFile
@@ -164,11 +165,7 @@ const start = async function() {
 
   // DB Cleanup
   cron.schedule('1 0 * * *', async function() {
-    const today = new Date(Date.now());
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
+    const today = moment().startOf('day').utc(true).toDate();
     console.log(`Starting old event cleanup`);
     const oldEvents = await server.mongo.db.collection('events').find({
       date: {

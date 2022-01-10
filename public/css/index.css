@@ -489,6 +489,17 @@ h6 {
   cursor: default;
   text-decoration: line-through;
 }
+.eventTickets.disabled:hover {
+  background-color: #b3b3b3;
+}
+
+.eventTickets.free {
+  pointer-events: none;
+  cursor: default;
+}
+.eventTickets.free:hover {
+  background-color: #b3b3b3;
+}
 
 .eventMore:hover {
   background-color: #666666;

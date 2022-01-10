@@ -504,6 +504,17 @@ h6 {
   pointer-events: none;
   cursor: default;
   text-decoration: line-through;
+  &:hover {
+    background-color: darken($white, 30%);
+  }
+}
+
+.eventTickets.free {
+  pointer-events: none;
+  cursor: default;
+  &:hover {
+    background-color: darken($white, 30%);
+  }
 }
 
 .eventMore:hover {

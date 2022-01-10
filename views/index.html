@@ -82,10 +82,22 @@
             <span>{{this.time}}</span>
           </time>
           <p class="eventTitle">{{this.name}}</p>
-          <div class="eventTickets{{#unless this.ticket}} disabled{{/unless}}"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
+          {{#isfree this}}
+            <div class="eventTickets free">Free</div>
+          {{else}}
+            {{#if this.ticket}}
+              <div class="eventTickets"><a href="{{this.ticket}}" target="_blank">Tickets</a></div>
+            {{else}}
+              <div class="eventTickets"><a href="https://recessops.com/collections/tickets" target="_blank">Tickets</a></div>
+            {{/if}}
+          {{/isfree}}
           <div class="eventMore">More</div>
           <p class="eventDesc">
-            {{#if this.price}}${{this.price}}</br>{{/if}}
+            {{#isfree this}}
+            FREE!</br>
+            {{else}}
+            ${{#if this.price}}{{this.price}}{{else}}TBA{{/if}}</br>
+            {{/isfree}}
             {{{this.description}}}
           </p>
         </div>
